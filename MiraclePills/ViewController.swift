@@ -12,6 +12,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     @IBOutlet weak var statePickerBtn: UIButton!
     @IBOutlet weak var statePicker: UIPickerView!
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var countryTextField: UITextField!
+    @IBOutlet weak var zipCodeLabel: UILabel!
+    @IBOutlet weak var zipCodeTextField: UITextField!
+    @IBOutlet weak var successImg: UIImageView!
     
     let states = ["Alaska", "Arkansas", "Alabama", "California", "Maine", "New York", "Texas"]
     
@@ -28,6 +33,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     @IBAction func stateBrnPressed(_ sender: Any) {
         statePicker.isHidden = false
+        countryLabel.isHidden = true
+        countryTextField.isHidden = true
+        zipCodeLabel.isHidden = true
+        zipCodeTextField.isHidden = true
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -45,7 +54,19 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         statePickerBtn.setTitle(states[row], for: UIControlState.normal) //workaround UIControlState()
         statePicker.isHidden = true
+        
+        countryLabel.isHidden = false
+        countryTextField.isHidden = false
+        zipCodeLabel.isHidden = false
+        zipCodeTextField.isHidden = false
     }
 
+    @IBAction func buyNowBtnPressed(_ sender: Any) {
+        for subview in view.subviews {
+            subview.isHidden = true
+        }
+        
+        successImg.isHidden = false
+    }
 }
 
